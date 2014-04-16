@@ -1,0 +1,40 @@
+<ui:composition template="/WEB-INF/template/LayoutPadron.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+
+    <ui:define name="titulo">Ciudadano</ui:define>
+    
+    <ui:define name="cuerpo">
+    	<f:metadata>
+			<o:viewParam name="persona" value="#{registroPersonaBean.persona}" />
+		</f:metadata>
+    
+    	<h1>Ciudadano</h1>
+    	
+    	<h:form id="frmRegistro">
+    		<p:messages id="messages" autoUpdate="true" closable="true" />
+
+	    	<p:toolbar style="margin-top: 20px">
+	    		<p:toolbarGroup>
+	    			<p:commandButton value="Guardar" id="botonGuardar" action="#{registroPersonaBean.guardar}" update="frmCadastro"/>
+	    		</p:toolbarGroup>
+	    		<p:toolbarGroup align="right">
+					<p:button value="Busqueda" />
+				</p:toolbarGroup>
+	    	</p:toolbar>
+	    	
+	    	<p:panelGrid columns="2" id="panel" style="width: 100%; margin-top: 20px"
+	    			columnClasses="etiqueta, campo">
+	    		<p:outputLabel value="Código" for="codigo"/>
+	    		<p:inputText id="codigo" size="20" maxlength="20" value="#{registroPersonaBean.persona.idpersona}" readonly="true"/>
+	    		
+	    		<p:outputLabel value="Nome" for="nome"/>
+	    		<p:inputText id="nome" size="60" maxlength="80" value="#{registroPersonaBean.persona.givenname}"/>
+	    	</p:panelGrid>
+    	</h:form>
+    </ui:define>
+</ui:composition>
